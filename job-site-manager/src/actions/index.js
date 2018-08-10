@@ -1,0 +1,1 @@
+import { RestfulAdapter } from "../adapters";

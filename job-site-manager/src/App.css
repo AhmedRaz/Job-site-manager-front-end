@@ -22,6 +22,12 @@
   font-size: large;
 }
 
+.image-tag {
+  margin: 1vw;
+  height: 400px;
+  width: 400px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
