@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore'
-import { testData } from './test_data'
+
 
 const store = configureStore()
 console.log('store', store)
@@ -16,7 +16,9 @@ console.log('state', store.getState())
 
 ReactDOM.render(
   <Provider store={ store } >
-    <App testData={testData}/>
+    <Router>
+      <App />
+    </Router>
   </Provider>
     , document.getElementById('root'));
 registerServiceWorker();

@@ -32,7 +32,33 @@ export class RestfulAdapter {
       headers: headers()
     }).then(responseHandler);
   }
+
+  static loginUser = (email, password) => {
+    return fetch(`${baseUrl}/auth`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accepts: 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        email_address: email,
+        password: password
+      })
+    }).then(responseHandler)
+  }
+
+  static getCurrentUser = (token) => {
+    return fetch(`${baseUrl}/current_user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accepts: 'application/json',
+        Authorization: token
+      }
+    }).then(responseHandler)
+  }
 }
+
+
 
 //these may not be necessary, but if you're setting up a variety of get, post,
 //and patch requests, it may be helpful to abstract their structure as well:
