@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { RestfulAdapter } from "./adapters";
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { getCompanies, logOut, getUser } from './actions'
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
 import LogInForm from './components/LogInForm';
+import SignUpForm from './components/SignUpForm';
+import MainContainer from './components/MainContainer'
 
 class App extends Component {
-  state = {
-    images: []
-  }
 
-  // componentDidMount() {
-  //   RestfulAdapter.indexFetch('images')
-  //   .then(data => {
-  //     this.setState({
-  //       images: data
-  //     }, () => console.log(this.state.images))
-  //     })
-  //   }
+
+  componentDidMount() {
+    this.props.getCompanies();
+
+  }
 
 
 
@@ -31,9 +27,28 @@ class App extends Component {
         <SideBar />
         <div className="main-content">
           <Switch>
+            <Route exact path="/" render={ () => {
+              return (!this.props.currentUserExists ?  <Redirect to="/login" /> :
+              <MainContainer />) } } />
+
+            <Route path="/main" render={ () => {
+              return (!this.props.currentUserExists ?  <Redirect to="/login" /> :
+              <MainContainer />) } } />
+
             <Route path="/login" render={ () => {
-              return <LogInForm />} } />
-            </Switch>
+              return (this.props.currentUserExists ? <Redirect to="/main" />
+                : <LogInForm />) } } />
+
+
+            <Route path="/signup" render={ () => {
+              return (this.props.currentUserExists ? <Redirect to="/main" />
+                : <SignUpForm />) } } />
+
+
+
+            {/* <Redirect to="/404" /> */}
+
+          </Switch>
         </div>
 
       </div>
@@ -41,4 +56,17 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCompanies : () => dispatch(getCompanies()),
+    logOut : () => dispatch(logOut()),
+    getUser : (token) => dispatch(getUser(token))
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    currentUserExists: state.userState.currentUserExists
+  }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

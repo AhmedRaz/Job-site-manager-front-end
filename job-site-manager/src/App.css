@@ -19,11 +19,12 @@
   position: absolute;
   height: 15vh;
   width: 100vw;
+  color: white;
 }
 
 .main-content {
   grid-area: m;
-  padding-top: 15.1vh;
+  padding-top: 15vh;
 }
 
 /* .App-title {
@@ -48,9 +49,47 @@
 
 #side-bar {
   grid-area: l;
+  width: 20vw;
   position: fixed;
   margin-top: 15vh;
   height: calc(100vh - 15vh);
   overflow-y: scroll;
   background-color: #778899;
+}
+
+legend {
+    background-color: #000;
+    color: #fff;
+    padding: 3px 6px;
+}
+
+.output {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+    margin: 1rem 0;
+    width: 60%;
+}
+
+label {
+    display: inline-block;
+    font-size: .8rem;
+    width: 20%;
+}
+
+input:invalid + span:after {
+    content: '✖';
+    color: #f00;
+    padding-left: 5px;
+}
+
+input:valid + span:after {
+    content: '✓';
+    color: #26b72b;
+    padding-left: 5px;
+}
+
+.item {
+  margin: 1vw;
 }
