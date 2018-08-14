@@ -20,10 +20,10 @@ const userReducer = (state = defaultState, action) => {
         ...state, error: "AUTHENTICATION ERROR"
       }
 
-    case 'GET_COMPANIES':
-      return {
-        ...state, companies: [...action.payload]
-      }
+    // case 'GET_COMPANIES':
+    //   return {
+    //     ...state, companies: [...action.payload]
+    //   }
 
     case 'LOG_OUT':
     return {

@@ -149,7 +149,7 @@ class SignUpForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    companies : state.userState.companies,
+    companies : state.companyState.companies,
     currentUserExists: state.userState.currentUserExists
   }
 }

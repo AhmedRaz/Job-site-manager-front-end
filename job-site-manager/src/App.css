@@ -93,3 +93,11 @@ input:valid + span:after {
 .item {
   margin: 1vw;
 }
+
+.side-bar-div {
+  /* display: flex; */
+  margin: .5vh;
+  /* justify-content: flex-start; */
+  text-align: left;
+  border-bottom: 2px solid #00004d;
+}
