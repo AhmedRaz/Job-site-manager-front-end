@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 class SideBar extends React.Component {
@@ -13,7 +14,7 @@ class SideBar extends React.Component {
   renderCompanyJobs = () => {
     console.log(this.props.company.jobs)
     return this.props.company.jobs.map(job => {
-      return <li key={job.id}><a href="">{ `${job.name}` }</a></li>
+      return <li key={job.id}><Link className="item" to={`/main/jobs/${job.id}`}>{ `${job.name}` }</Link></li>
     })
   }
 

@@ -1,6 +1,7 @@
 const defaultState = {
   job: {},
-  companyJobs: []
+  companyJobs: [],
+  selectedEvent: null
 }
 
 const jobReducer = (state = defaultState, action) => {
@@ -10,7 +11,15 @@ const jobReducer = (state = defaultState, action) => {
         ...state, companyJobs: [...action.payload]
       }
 
+    case 'SELECTED_EVENT':
+      return {
+        ...state, selectedEvent: {...state.selectedEvent, ...action.payload}
+      }
 
+    case 'CLOSE_EVENT':
+      return {
+        ...state, selectedEvent: null
+      }
 
     case 'LOG_OUT':
       return {

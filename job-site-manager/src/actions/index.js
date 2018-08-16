@@ -16,7 +16,7 @@ export const loginUser = (email, password) => {
       dispatch({type: "GET_COMPANY", payload: company})
       return company.id
     })
-    .then()
+    .then((id) => dispatch(getCompanyJobs("jobs", "company", id)))
     .catch(err => dispatch(loginError()))
   }
 }
@@ -31,7 +31,11 @@ export const createUser = (route, body) => {
       return data.company.id
     })
     .then(id => RestfulAdapter.showFetch("companies", id))
-    .then(company => dispatch({type: "GET_COMPANY", payload: company}))
+    .then(company => {
+      dispatch({type: "GET_COMPANY", payload: company})
+      return company.id
+    })
+    .then((id) => dispatch(getCompanyJobs("jobs", "company", id)))
     .catch(err => dispatch(loginError()))
   }
 }
@@ -44,7 +48,12 @@ export const getUser = (token) => {
     return data.company.id
   })
   .then(id => RestfulAdapter.showFetch("companies", id))
-  .then(company => dispatch({type: "GET_COMPANY", payload: company}))
+  .then(company => {
+    dispatch({type: "GET_COMPANY", payload: company})
+    return company.id
+  })
+  .then((id) => dispatch(getCompanyJobs("jobs", "company", id)))
+  .catch(err => dispatch(loginError()))
   }
 }
 
@@ -81,5 +90,22 @@ export const getCompanyJobs = (route, filter, search_param) => {
   return (dispatch) => {
     RestfulAdapter.filteredFetch(route, filter, search_param)
     .then(data => dispatch({type: "GET_COMPANY_JOBS", payload: data}))
+  }
+}
+
+export const selectEvent = (eventId) => {
+  return (dispatch) => {
+    RestfulAdapter.showFetch("events", eventId)
+    .then(event => dispatch({
+      type: "SELECTED_EVENT",
+      payload: event
+    }))
+  }
+}
+
+export const closeEvent = () => {
+  console.log("close event hit")
+  return {
+    type: "CLOSE_EVENT"
   }
 }

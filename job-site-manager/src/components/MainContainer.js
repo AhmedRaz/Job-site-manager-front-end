@@ -1,19 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { getCompanyJobs } from '../actions'
+import JobDetail from './JobDetail'
 
 class MainContainer extends React.Component {
 
 
   render(){
-    console.log(this.props);
     return(
       <div>
 
-        <img src='https://4.bp.blogspot.com/-BGO5H1Kkbuk/Vrw9moTGlXI/AAAAAAAAGX4/heinrNagxKo/s400/under%2Bconstruction.jpg' />
+        <img className="image-tag" src={`${this.props.company.logo_src}`} alt="https://4.bp.blogspot.com/-BGO5H1Kkbuk/Vrw9moTGlXI/AAAAAAAAGX4/heinrNagxKo/s400/under%2Bconstruction.jpg"/>
         <Switch>
-
+           {this.props.companyJobs && <Route path="/main/jobs/:id" render={(routerProps) => {
+             const job = this.props.companyJobs.find((job) => {
+               return job.id === parseInt(routerProps.match.params.id, 10)
+             })
+             return <JobDetail job={job}  />
+           }} />}
         </Switch>
       </div>
     );

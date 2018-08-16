@@ -24,7 +24,7 @@
 
 .main-content {
   grid-area: m;
-  padding-top: 15vh;
+  /* padding-top: .25vh; */
 }
 
 /* .App-title {
@@ -36,9 +36,9 @@
 } */
 
 .image-tag {
-  margin: 1vw;
-  height: 400px;
-  width: 400px;
+  margin: .5vw;
+  height: 33vh;
+  width: 33vw;
 }
 
 @keyframes App-logo-spin {
@@ -100,4 +100,20 @@ input:valid + span:after {
   /* justify-content: flex-start; */
   text-align: left;
   border-bottom: 2px solid #00004d;
+}
+
+.job-details {
+  margin: .1vmin;
+  text-align: left;
+}
+
+a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.close-button {
+position: relative;
+top: auto ;
+outline:5px solid #fff
 }
