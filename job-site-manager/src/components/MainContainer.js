@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { getCompanyJobs } from '../actions'
-import JobDetail from './JobDetail'
+import { getCompanyJobs } from '../actions';
+import JobDetail from './JobDetail';
+import CreateJobFormContainer from './CreateJobFormContainer';
+
 
 class MainContainer extends React.Component {
 
@@ -19,6 +21,8 @@ class MainContainer extends React.Component {
              })
              return <JobDetail job={job}  />
            }} />}
+
+           <Route path="/main/create_job" component={ CreateJobFormContainer } />
         </Switch>
       </div>
     );

@@ -16,7 +16,12 @@ export const loginUser = (email, password) => {
       dispatch({type: "GET_COMPANY", payload: company})
       return company.id
     })
-    .then((id) => dispatch(getCompanyJobs("jobs", "company", id)))
+    .then((id) => {
+      dispatch(getCompanyJobs("jobs", "company", id))
+      let location = currentLocation();
+      return location
+    })
+    .then(location => dispatch(getLocation(location)))
     .catch(err => dispatch(loginError()))
   }
 }
@@ -35,7 +40,15 @@ export const createUser = (route, body) => {
       dispatch({type: "GET_COMPANY", payload: company})
       return company.id
     })
-    .then((id) => dispatch(getCompanyJobs("jobs", "company", id)))
+    .then((id) => {
+      dispatch(getCompanyJobs("jobs", "company", id))
+      let location = currentLocation();
+      return location
+    })
+    .then(location => {
+      console.log("in log in, trying to get location",location)
+      dispatch(getLocation(location))})
+
     .catch(err => dispatch(loginError()))
   }
 }
@@ -52,7 +65,12 @@ export const getUser = (token) => {
     dispatch({type: "GET_COMPANY", payload: company})
     return company.id
   })
-  .then((id) => dispatch(getCompanyJobs("jobs", "company", id)))
+  .then((id) => {
+    dispatch(getCompanyJobs("jobs", "company", id))
+    let location = currentLocation();
+    return location
+  })
+  .then(location => dispatch(getLocation(location)))
   .catch(err => dispatch(loginError()))
   }
 }
@@ -74,7 +92,6 @@ export const logOut =() => {
   return (dispatch) => {
     localStorage.removeItem('token');
     dispatch({type:"LOG_OUT"})
-
   }
 }
 
@@ -104,8 +121,27 @@ export const selectEvent = (eventId) => {
 }
 
 export const closeEvent = () => {
-  console.log("close event hit")
   return {
     type: "CLOSE_EVENT"
+  }
+}
+
+export const getLocation = (location) => {
+  return {
+    type: "GET_LOCATION",
+    payload: location
+  }
+}
+
+const currentLocation = () => {
+  if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition((position) => {
+         let pos = {
+           lat: position.coords.latitude,
+           lng: position.coords.longitude
+         }
+         console.log("pos", pos)
+         return pos;
+       })
   }
 }

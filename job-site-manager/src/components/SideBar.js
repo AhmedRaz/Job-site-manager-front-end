@@ -38,6 +38,9 @@ class SideBar extends React.Component {
             { this.props.company.jobs && this.renderCompanyJobs() }
           </ul>
         </div>
+        <div className="side-bar-div" >
+          <Link className="item" to="/main/create_job">Create New Job </Link>
+        </div>
       </div>
     );
   }

@@ -16,10 +16,6 @@ const companyReducer = (state = defaultState, action) => {
         ...state, company: {...state.company, ...action.payload}
       }
 
-    case 'LOG_OUT':
-      return {
-        ...state, ...defaultState
-      }
 
     default:
       return {...state};

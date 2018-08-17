@@ -21,10 +21,6 @@ const jobReducer = (state = defaultState, action) => {
         ...state, selectedEvent: null
       }
 
-    case 'LOG_OUT':
-      return {
-      ...state, ...defaultState
-      }
 
     default:
       return {...state};

@@ -7,9 +7,10 @@ import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
 import LogInForm from './components/LogInForm';
 import SignUpForm from './components/SignUpForm';
-import MainContainer from './components/MainContainer'
+import MainContainer from './components/MainContainer';
 
 class App extends Component {
+
 
 
   componentDidMount() {
@@ -18,12 +19,11 @@ class App extends Component {
       this.props.getUser(localStorage.getItem('token'))
     }
 
-
   }
 
   propCheck = () => {
     return this.props.currentUserExists && this.props.company
-    }
+  }
 
 
 
@@ -57,8 +57,6 @@ class App extends Component {
               return (this.props.currentUserExists ? <Redirect to="/main" />
                 : <SignUpForm />) } } />
 
-
-
             {/* <Redirect to="/404" /> */}
 
           </Switch>
@@ -75,6 +73,7 @@ const mapDispatchToProps = (dispatch) => {
     logOut : () => dispatch(logOut()),
     getUser : (token) => dispatch(getUser(token)),
     getCompany : (route, id) => dispatch(getCompany(route, id))
+
   }
 }
 
