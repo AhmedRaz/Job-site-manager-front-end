@@ -1,8 +1,8 @@
 .App {
   text-align: center;
   display: grid;
-  grid-template-columns: 20vw 70vw 10vw;
-  grid-template-areas: "l m r";
+  grid-template-columns: 20vw 80vw;
+  grid-template-areas: "l r";
   padding-top: 15vh;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .main-content {
-  grid-area: m;
+  grid-area: r;
   /* padding-top: .25vh; */
 }
 
@@ -116,4 +116,15 @@ a:hover {
 position: relative;
 top: auto ;
 outline:5px solid #fff
+}
+
+.create-job {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+}
+
+.create-job-item {
+  grid-column: 1/2;
+  grid-row: 1/2;
 }

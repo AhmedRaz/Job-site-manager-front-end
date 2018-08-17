@@ -1,32 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MapContainer from './MapContainer';
+import CreateLocation from './CreateLocation';
+import CreateJob from './CreateJob';
 
 
 class CreateJobFormContainer extends React.Component {
 
-  currentLocation = () => {
-    if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition((position) => {
-           let pos = {
-             lat: position.coords.latitude,
-             lng: position.coords.longitude
-           }
-           console.log("pos", pos)
-           return pos;
-
-         })
-    }
-  }
-
   render(){
     return(
-      <div>
-        <MapContainer />
-      </div>
-
+      <React.Fragment>
+        {/* <div className="create-job">
+            { this.props.geoLocation && <MapContainer geoLocation={this.props.geoLocation} /> }
+        </div> */}
+        { (this.props.geoLocation && !this.props.locationObject) && <CreateLocation geoLocation={this.props.geoLocation} /> }
+        { (this.props.locationObject && this.props.company) && <CreateJob locationObject={this.props.locationObject} company={this.props.company} />}
+      </React.Fragment>
     );
   }
 }
 
-export default connect()(CreateJobFormContainer)
+const mapStateToProps = (state) => {
+  return {
+    geoLocation : state.createJobState.location,
+    locationObject: state.createJobState.locationObject,
+    company: state.createJobState.company
+  }
+}
+
+export default connect(mapStateToProps)(CreateJobFormContainer)

@@ -1,5 +1,7 @@
 import { RestfulAdapter } from "../adapters";
 
+
+
 export const loginUser = (email, password) => {
   return (dispatch) => {
     RestfulAdapter.loginUser(email, password)
@@ -18,10 +20,7 @@ export const loginUser = (email, password) => {
     })
     .then((id) => {
       dispatch(getCompanyJobs("jobs", "company", id))
-      let location = currentLocation();
-      return location
     })
-    .then(location => dispatch(getLocation(location)))
     .catch(err => dispatch(loginError()))
   }
 }
@@ -42,13 +41,9 @@ export const createUser = (route, body) => {
     })
     .then((id) => {
       dispatch(getCompanyJobs("jobs", "company", id))
-      let location = currentLocation();
-      return location
+      // let location = currentLocation();
+      // return location
     })
-    .then(location => {
-      console.log("in log in, trying to get location",location)
-      dispatch(getLocation(location))})
-
     .catch(err => dispatch(loginError()))
   }
 }
@@ -67,10 +62,9 @@ export const getUser = (token) => {
   })
   .then((id) => {
     dispatch(getCompanyJobs("jobs", "company", id))
-    let location = currentLocation();
-    return location
+    // let location = currentLocation();
+    // return location
   })
-  .then(location => dispatch(getLocation(location)))
   .catch(err => dispatch(loginError()))
   }
 }
@@ -126,22 +120,20 @@ export const closeEvent = () => {
   }
 }
 
-export const getLocation = (location) => {
+export const getLocation = (pos) => {
+
   return {
-    type: "GET_LOCATION",
-    payload: location
+      type: "GET_LOCATION",
+      payload: pos
   }
 }
 
-const currentLocation = () => {
-  if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition((position) => {
-         let pos = {
-           lat: position.coords.latitude,
-           lng: position.coords.longitude
-         }
-         console.log("pos", pos)
-         return pos;
-       })
+export const createLocation = (route, location) => {
+  return (dispatch) => {
+    RestfulAdapter.createFetch(route, location)
+    .then(data => dispatch({
+      type: "GET_LOCATION_OBJECT",
+      payload: data
+    }))
   }
 }

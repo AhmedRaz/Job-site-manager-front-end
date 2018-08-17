@@ -3,27 +3,14 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 export class MapContainer extends Component {
 
-  currentLocation = () => {
-    if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition((position) => {
-           let pos = {
-             lat: position.coords.latitude,
-             lng: position.coords.longitude
-           }
-
-           return pos;
-
-         })
-    }
-  }
 
   render() {
-
+    console.log("this is in MapContainer", this.props.geoLocation);
     return (
       <React.Fragment>
-         <Map style={ {width: '75%', height: '75%' } }
+         <Map id="map" style={ {width: '75%', height: '75%' } }
           google={this.props.google}
-          initialCenter={ {lat: 40.7008122, lng: -73.9877989} } zoom={14}>
+          initialCenter={ {lat: this.props.geoLocation.lat, lng: this.props.geoLocation.lng} } zoom={14}>
 
           <Marker onClick={ this.onMarkerClick }
                 name={'Current location'} />

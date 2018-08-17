@@ -29,13 +29,11 @@ class App extends Component {
 
 
   render() {
-
     return (
       <div className="App">
         <NavBar />
         { this.propCheck() ?
           <SideBar /> : ""
-
         }
         <div className="main-content">
           <Switch>
@@ -73,7 +71,6 @@ const mapDispatchToProps = (dispatch) => {
     logOut : () => dispatch(logOut()),
     getUser : (token) => dispatch(getUser(token)),
     getCompany : (route, id) => dispatch(getCompany(route, id))
-
   }
 }
 
