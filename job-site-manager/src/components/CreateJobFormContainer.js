@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MapContainer from './MapContainer';
-import CreateLocation from './CreateLocation';
+import SelectLocation from './SelectLocation';
 import CreateJob from './CreateJob';
 
 
@@ -13,7 +13,7 @@ class CreateJobFormContainer extends React.Component {
         {/* <div className="create-job">
             { this.props.geoLocation && <MapContainer geoLocation={this.props.geoLocation} /> }
         </div> */}
-        { (this.props.geoLocation && !this.props.locationObject) && <CreateLocation geoLocation={this.props.geoLocation} /> }
+        { (this.props.geoLocation && !this.props.locationObject) && <SelectLocation geoLocation={this.props.geoLocation} company={this.props.company}/> }
         { (this.props.locationObject && this.props.company) && <CreateJob locationObject={this.props.locationObject} company={this.props.company} />}
       </React.Fragment>
     );

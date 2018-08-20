@@ -1,7 +1,8 @@
 const defaultState = {
   company: {},
   location: null,
-  locationObject: null
+  locationObject: null,
+  jobObject: null
 }
 
 const createJobReducer = (state = defaultState, action) => {
@@ -18,8 +19,15 @@ const createJobReducer = (state = defaultState, action) => {
       }
 
     case 'GET_LOCATION_OBJECT':
+
       return {
         ...state, locationObject: {...action.payload}
+      }
+
+    case 'CREATE_NEW_JOB':
+    console.log("this hit create job reducer", action.payload);
+      return {
+        ...state, jobObject: {...action.payload}
       }
 
     default:

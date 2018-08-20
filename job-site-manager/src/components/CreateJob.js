@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createJob } from '../actions';
+import CreateEvent from './CreateEvent';
 
 class CreateJob extends React.Component {
   state = {
@@ -12,7 +14,7 @@ class CreateJob extends React.Component {
     e.persist();
     this.setState({
       [e.target.name]: e.target.value
-    }, () => console.log("inside create job", this.state))
+    })
   }
 
   handleSubmit = (e) => {
@@ -22,25 +24,48 @@ class CreateJob extends React.Component {
       location_id: this.state.location_id,
       company_id: this.state.company_id
     }
-    console.log("inside create job submit",job);
+    this.props.createJob("jobs", job);
   }
 
   render(){
     return(
-      <div>
-        <fieldset>
-          <legend>Create Job</legend>
-          <p>Company: {`${this.props.company.name}`}</p>
-          <p>Site Location: </p>
-          <p>
-            <span>Latitude: {`${this.props.locationObject.latitude}  `}</span>
-            <span>Longitude: {`${this.props.locationObject.longitude}`}</span>
-          </p>
+      <React.Fragment>
+        <div>
+          <fieldset>
+            <legend>Create Job</legend>
+            <p>Company: {`${this.props.company.name}`}</p>
+            <p>Site Location: </p>
+            <p>
+              <span>Latitude: {`${this.props.locationObject.latitude}  `}</span>
+              <span>Longitude: {`${this.props.locationObject.longitude}`}</span>
+            </p>
+            <p>{`${this.props.locationObject.address}, ${this.props.locationObject.city}, ${this.props.locationObject.state}`} </p>
+            <form onSubmit={ this.handleSubmit } >
+              <p>
+                <label>Job Name: </label>
+                <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
+              </p>
+              <p>
+                <input type="submit" value="Create Job" />
+              </p>
+            </form>
 
-        </fieldset>
-      </div>
+          </fieldset>
+        </div>
+        {this.props.jobObject && <CreateEvent job={this.props.jobObject} />}
+      </React.Fragment>
     );
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createJob : (route, job) => dispatch(createJob(route, job))
+  }
+}
 
-export default CreateJob
+const mapStateToProps = (state) => {
+  return {
+    jobObject: state.createJobState.jobObject
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CreateJob)

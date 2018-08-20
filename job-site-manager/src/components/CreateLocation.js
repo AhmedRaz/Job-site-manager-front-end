@@ -10,7 +10,8 @@ class CreateLocation extends React.Component {
     latitude: this.props.geoLocation.lat,
     address: "",
     city: "",
-    stateLoc: "NY"
+    stateLoc: "NY",
+    company_id: this.props.company.id,
   }
 
   handleChange = (e) => {
@@ -27,7 +28,8 @@ class CreateLocation extends React.Component {
       latitude: this.state.latitude,
       address: this.state.address,
       city: this.state.city,
-      state: this.state.stateLoc
+      state: this.state.stateLoc,
+      company_id: this.state.company_id
     }
     this.props.createLocation("locations", location);
   }

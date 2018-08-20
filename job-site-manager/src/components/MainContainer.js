@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { getCompanyJobs, getLocation } from '../actions';
+import { getCompanyJobs, getLocation, setJob } from '../actions';
 import JobDetail from './JobDetail';
 import CreateJobFormContainer from './CreateJobFormContainer';
 
@@ -69,7 +69,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCompanyJobs : (route, filter, search_param) => dispatch(getCompanyJobs(route, filter, search_param)),
-    getLocation : (pos) => dispatch(getLocation(pos))
+    getLocation : (pos) => dispatch(getLocation(pos)),
+    setJob
   }
 }
 

@@ -137,3 +137,50 @@ export const createLocation = (route, location) => {
     }))
   }
 }
+
+export const selectLocation = (route, location_id) => {
+  return (dispatch) => {
+    RestfulAdapter.showFetch(route, location_id)
+    .then(data => dispatch({
+      type: "GET_LOCATION_OBJECT",
+      payload: data
+    }))
+  }
+}
+
+export const createJob = (route, job) => {
+  return (dispatch) => {
+    RestfulAdapter.createFetch(route, job)
+    .then(data => dispatch({
+      type: "CREATE_NEW_JOB",
+      payload: data
+    }))
+  }
+}
+
+export const getJobEvents = (route, job, job_id) => {
+  return (dispatch) => {
+    RestfulAdapter.filteredFetch(route, job, job_id)
+    .then(data => dispatch({
+      type: 'GET_JOB_EVENTS',
+      payload: data
+    }))
+  }
+}
+
+export const createEventObject = (route, event) => {
+  return (dispatch) => {
+    RestfulAdapter.createFetch(route, event)
+    .then(data => dispatch({
+      type: 'CREATE_JOB_EVENT',
+      payload: data
+    }))
+  }
+}
+
+export const setJob = (job) => {
+  return {
+      type: 'SET_JOB',
+      payload: job
+    }
+}

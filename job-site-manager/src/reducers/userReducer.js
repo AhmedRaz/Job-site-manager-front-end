@@ -2,8 +2,7 @@ const defaultState = {
   user: {},
   currentUserExists: false,
   authentication: false,
-  error: "",
-  companies: []
+  error: ""
 }
 
 const userReducer = (state = defaultState, action) => {

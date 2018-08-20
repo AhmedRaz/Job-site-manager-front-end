@@ -13,8 +13,8 @@ class SideBar extends React.Component {
 
   renderCompanyJobs = () => {
     console.log(this.props.company.jobs)
-    return this.props.company.jobs.map(job => {
-      return <li key={job.id}><Link className="item" to={`/main/jobs/${job.id}`}>{ `${job.name}` }</Link></li>
+    return this.props.jobsList.map(job => {
+      return <li key={`job-${job.id}`}><Link className="item" to={`/main/jobs/${job.id}`}>{ `${job.name}` }</Link></li>
     })
   }
 
@@ -49,6 +49,7 @@ class SideBar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     company: state.companyState.company,
+    jobsList: state.jobState.companyJobs,
     user: state.userState.user
 
   }
