@@ -13,7 +13,9 @@ class JobDetail extends React.Component {
   updateJobEvents(){
     console.log("new job: ", this.props.job.id);
     // updates the job events for THIS job
+    this.props.getJobEvents("events", "job", this.props.job.id)
     // make some fetch that updates State (redux)
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -32,7 +34,7 @@ class JobDetail extends React.Component {
 
   renderJobEvents = () => {
 
-    return this.props.job.events.map(item => {
+    return this.props.jobEvents.map(item => {
       return <li key={`event-${item.id}` }><a onClick= {() => this.handleClick(item.id)} >{`${item.event_name}`}</a></li>
     })
   }
@@ -51,7 +53,7 @@ class JobDetail extends React.Component {
             <p>Job: {`${this.props.job.name}`}</p>
             <p>Location: {`${this.props.job.location.address}, ${this.props.job.location.city}, ${this.props.job.location.state}`}</p>
             {this.props.jobEvents && <div>
-              <p>Events: {`${this.props.job.events.length}`}</p>
+              <p>Events: {`${this.props.jobEvents.length}`}</p>
               <ul>
                 {this.renderJobEvents()}
               </ul>

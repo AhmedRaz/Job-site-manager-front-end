@@ -29,10 +29,11 @@ const jobReducer = (state = defaultState, action) => {
 
     case 'GET_JOB_EVENTS':
       return {
-        ...state, jobEvents: [...state.jobEvents, ...action.payload]
+        ...state, jobEvents: [...action.payload]
       }
 
     case 'CREATE_JOB_EVENT':
+      console.log("this is in create job event", action.payload);
       return {
         ...state, jobEvents: [...state.jobEvents, action.payload]
       }

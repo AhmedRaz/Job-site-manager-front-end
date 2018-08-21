@@ -170,11 +170,13 @@ export const getJobEvents = (route, job, job_id) => {
 
 export const createEventObject = (route, event) => {
   return (dispatch) => {
+    console.log("create event object hit")
     RestfulAdapter.createFetch(route, event)
     .then(data => dispatch({
       type: 'CREATE_JOB_EVENT',
       payload: data
     }))
+
   }
 }
 

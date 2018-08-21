@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createEventObject } from '../actions';
+import { withRouter } from 'react-router-dom';
+
 
 
 class CreateEvent extends React.Component {
@@ -26,7 +28,7 @@ class CreateEvent extends React.Component {
     e.persist();
     this.setState({
       [e.target.name]: e.target.value
-    }, () => console.log(this.state))
+    })
   }
 
   handleSubmit = (e) => {
@@ -47,11 +49,30 @@ class CreateEvent extends React.Component {
     }, () => this.resetForm())
   }
 
+  // postEvents = (resolve, reject) => {
+  //
+  //   this.state.eventList.forEach(event => {
+  //     this.props.createEventObject("events", event )
+  //     })
+  //     resolve("OK")
+  //
+  // }
+  //
+  // eventPromise = new Promise(this.postEvents)
+  //
+  // handleEvents = () => {
+  //
+  //   this.eventPromise.then((res) => {
+  //     console.log("promise hit", res)
+  //     return <Redirect to={`/main/jobs/${this.state.job_id}`} />
+  //   })
+  // }
   handleEvents = (e) => {
     e.persist();
     this.state.eventList.forEach(event => {
-      this.props.createEventObject("events", event )
-    })
+        this.props.createEventObject("events", event )
+        })
+    this.props.history.push('/main')
   }
 
   renderEvents = () => {
@@ -127,4 +148,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(CreateEvent)
+export default withRouter(connect(null, mapDispatchToProps)(CreateEvent))
