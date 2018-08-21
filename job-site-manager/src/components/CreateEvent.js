@@ -49,22 +49,23 @@ class CreateEvent extends React.Component {
     }, () => this.resetForm())
   }
 
-  // postEvents = (resolve, reject) => {
-  //
+  // postEvents = async (resolve, reject) => {
+  //   console.log("eventList", this.state.eventList)
   //   this.state.eventList.forEach(event => {
-  //     this.props.createEventObject("events", event )
+  //     console.log("inside foreach ", event)
+  //     await this.props.createEventObject("events", event )
   //     })
   //     resolve("OK")
   //
   // }
   //
-  // eventPromise = new Promise(this.postEvents)
   //
   // handleEvents = () => {
+  //   const eventPromise = new Promise(this.postEvents)
   //
-  //   this.eventPromise.then((res) => {
+  //   eventPromise.then((res) => {
   //     console.log("promise hit", res)
-  //     return <Redirect to={`/main/jobs/${this.state.job_id}`} />
+  //     this.props.history.push('/main')
   //   })
   // }
   handleEvents = (e) => {

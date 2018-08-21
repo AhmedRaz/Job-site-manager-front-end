@@ -33,7 +33,6 @@ const jobReducer = (state = defaultState, action) => {
       }
 
     case 'CREATE_JOB_EVENT':
-      console.log("this is in create job event", action.payload);
       return {
         ...state, jobEvents: [...state.jobEvents, action.payload]
       }

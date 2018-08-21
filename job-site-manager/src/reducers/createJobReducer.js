@@ -25,7 +25,7 @@ const createJobReducer = (state = defaultState, action) => {
       }
 
     case 'CREATE_NEW_JOB':
-    console.log("this hit create job reducer", action.payload);
+    
       return {
         ...state, jobObject: {...action.payload}
       }

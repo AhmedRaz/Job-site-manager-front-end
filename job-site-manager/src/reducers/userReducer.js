@@ -2,7 +2,8 @@ const defaultState = {
   user: {},
   currentUserExists: false,
   authentication: false,
-  error: ""
+  error: "",
+  userEvents: []
 }
 
 const userReducer = (state = defaultState, action) => {
@@ -17,6 +18,15 @@ const userReducer = (state = defaultState, action) => {
     case 'LOGIN_ERROR':
       return {
         ...state, error: "AUTHENTICATION ERROR"
+      }
+    case 'GET_USER_EVENTS':
+      return {
+        ...state, userEvents: [...action.payload]
+      }
+
+    case 'UPDATE_USER_EVENTS':
+      return {
+        ...state, userEvents: [...state.userEvents, action.payload]
       }
 
     case 'LOG_OUT':

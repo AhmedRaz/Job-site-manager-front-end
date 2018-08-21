@@ -43,7 +43,8 @@ class CreateJob extends React.Component {
             <form onSubmit={ this.handleSubmit } >
               <p>
                 <label>Job Name: </label>
-                <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
+                <input required type="text" name="name" value={ this.state.name } onChange={ this.handleChange } />
+                <span className="validity"></span>
               </p>
               <p>
                 <input type="submit" value="Create Job" />

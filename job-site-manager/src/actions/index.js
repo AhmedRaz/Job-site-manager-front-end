@@ -19,6 +19,7 @@ export const loginUser = (email, password) => {
       return company.id
     })
     .then((id) => {
+      dispatch(getCompanyUsers("users", "company", id))
       dispatch(getCompanyJobs("jobs", "company", id))
     })
     .catch(err => dispatch(loginError()))
@@ -41,8 +42,7 @@ export const createUser = (route, body) => {
     })
     .then((id) => {
       dispatch(getCompanyJobs("jobs", "company", id))
-      // let location = currentLocation();
-      // return location
+      dispatch(getCompanyUsers("users", "company", id))
     })
     .catch(err => dispatch(loginError()))
   }
@@ -62,8 +62,8 @@ export const getUser = (token) => {
   })
   .then((id) => {
     dispatch(getCompanyJobs("jobs", "company", id))
-    // let location = currentLocation();
-    // return location
+    dispatch(getCompanyUsers("users", "company", id))
+
   })
   .catch(err => dispatch(loginError()))
   }
@@ -170,7 +170,6 @@ export const getJobEvents = (route, job, job_id) => {
 
 export const createEventObject = (route, event) => {
   return (dispatch) => {
-    console.log("create event object hit")
     RestfulAdapter.createFetch(route, event)
     .then(data => dispatch({
       type: 'CREATE_JOB_EVENT',
@@ -185,4 +184,52 @@ export const setJob = (job) => {
       type: 'SET_JOB',
       payload: job
     }
+}
+
+export const getCompanyUsers = (route, company, company_id) => {
+  return (dispatch) => {
+    RestfulAdapter.filteredFetch(route, company, company_id)
+    .then(data => dispatch({
+      type: 'GET_COMPANY_USERS',
+      payload: data
+    }))
+  }
+}
+
+export const assignUserToEvent = (route, event_id, user_id) => {
+  return (dispatch) => {
+    RestfulAdapter.editFetch(route, event_id, user_id)
+    .then(resp => dispatch({
+      type: "SELECTED_EVENT",
+      payload: resp})
+    )
+  }
+}
+export const editEvent = (route, event_id, body) => {
+  return (dispatch) => {
+    RestfulAdapter.editFetch(route, event_id, body)
+    .then(resp => dispatch({
+      type: "SELECTED_EVENT",
+      payload: resp})
+    )
+  }
+}
+
+export const getUserEvents = (route, user, user_id) => {
+  return (dispatch) => {
+    RestfulAdapter.filteredFetch(route, user, user_id)
+    .then(resp => {
+      dispatch({
+        type: "GET_USER_EVENTS",
+        payload: resp
+      })
+    })
+  }
+}
+
+export const updateUserEvents = (event) => {
+  return {
+    type: "UPDATE_USER_EVENTS",
+    payload: event
+  }
 }

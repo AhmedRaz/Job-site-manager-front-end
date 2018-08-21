@@ -1,6 +1,6 @@
 import React from 'react' ;
 import { connect } from 'react-redux';
-import { selectEvent, getJobEvents} from '../actions';
+import { selectEvent, getJobEvents, closeEvent} from '../actions';
 import EventDetail from './EventDetail';
 
 
@@ -8,12 +8,14 @@ class JobDetail extends React.Component {
 
   componentDidMount() {
     this.updateJobEvents()
+
   }
 
   updateJobEvents(){
-    console.log("new job: ", this.props.job.id);
+
     // updates the job events for THIS job
     this.props.getJobEvents("events", "job", this.props.job.id)
+    this.props.closeEvent()
     // make some fetch that updates State (redux)
 
   }
@@ -24,6 +26,7 @@ class JobDetail extends React.Component {
       this.updateJobEvents()
     }
     // otherwise do nothing
+
 
   }
   renderJobImages = () => {
@@ -71,6 +74,7 @@ class JobDetail extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    closeEvent: () => (dispatch(closeEvent())),
     selectEvent: (event) => dispatch(selectEvent(event)),
     getJobEvents: (route, job, job_id) => dispatch(getJobEvents(route, job, job_id))
   }

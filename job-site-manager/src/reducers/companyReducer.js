@@ -1,6 +1,7 @@
 const defaultState = {
   company: {},
-  companies: []
+  companies: [],
+  companyUsers: []
 }
 
 const companyReducer = (state = defaultState, action) => {
@@ -14,6 +15,11 @@ const companyReducer = (state = defaultState, action) => {
     case 'GET_COMPANY':
       return {
         ...state, company: {...state.company, ...action.payload}
+      }
+
+    case 'GET_COMPANY_USERS':
+      return {
+        ...state, companyUsers: [...action.payload]
       }
 
 

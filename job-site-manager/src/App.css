@@ -1,8 +1,8 @@
 .App {
   text-align: center;
   display: grid;
-  grid-template-columns: 20vw 80vw;
-  grid-template-areas: "l r";
+  grid-template-columns: 20vw 60vw 20vw;
+  grid-template-areas: "l m r";
   padding-top: 15vh;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .main-content {
-  grid-area: r;
+  grid-area: m;
   /* padding-top: .25vh; */
 }
 
