@@ -10,9 +10,7 @@ class CreateJobFormContainer extends React.Component {
   render(){
     return(
       <React.Fragment>
-        {/* <div className="create-job">
-            { this.props.geoLocation && <MapContainer geoLocation={this.props.geoLocation} /> }
-        </div> */}
+        
         { (this.props.geoLocation && !this.props.locationObject) && <SelectLocation geoLocation={this.props.geoLocation} company={this.props.company}/> }
         { (this.props.locationObject && this.props.company) && <CreateJob locationObject={this.props.locationObject} company={this.props.company} />}
       </React.Fragment>

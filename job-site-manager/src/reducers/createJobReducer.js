@@ -2,7 +2,8 @@ const defaultState = {
   company: {},
   location: null,
   locationObject: null,
-  jobObject: null
+  jobObject: null,
+  jobImage: null
 }
 
 const createJobReducer = (state = defaultState, action) => {
@@ -25,9 +26,14 @@ const createJobReducer = (state = defaultState, action) => {
       }
 
     case 'CREATE_NEW_JOB':
-    
+
       return {
         ...state, jobObject: {...action.payload}
+      }
+
+    case 'SAVE_JOB_IMAGE':
+      return {
+        ...state, jobImage: {...action.payload}
       }
 
     default:

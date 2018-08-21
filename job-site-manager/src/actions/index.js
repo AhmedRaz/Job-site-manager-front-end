@@ -233,3 +233,15 @@ export const updateUserEvents = (event) => {
     payload: event
   }
 }
+
+export const saveJobImage = (imageObject) => {
+  return (dispatch) => {
+    RestfulAdapter.createFetch("images", imageObject)
+    .then(resp => {
+      dispatch({
+        type: "SAVE_JOB_IMAGE",
+        payload: resp
+      })
+    })
+  }
+}

@@ -31,7 +31,7 @@ class JobDetail extends React.Component {
   }
   renderJobImages = () => {
     return this.props.job.images.map(image => {
-      return <img className="image-tag" src={`data:image/jpeg;base64,${image.image_data}`} alt={`${image.image_name}`} key={`image-${image.id}`}  />
+      return <img className="image-tag" src={image.image_data} alt={`${image.image_name}`} key={`image-${image.id}`}  />
     })
   }
 

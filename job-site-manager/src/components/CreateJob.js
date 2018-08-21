@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createJob } from '../actions';
 import CreateEvent from './CreateEvent';
+import CaptureImage from './CaptureImage';
 
 class CreateJob extends React.Component {
   state = {
@@ -53,6 +54,9 @@ class CreateJob extends React.Component {
 
           </fieldset>
         </div>
+        {(this.props.jobObject && !this.props.jobImage) ? <CaptureImage job={this.props.jobObject} /> :
+          <div><img src={this.props.jobImage.image_data} /></div>
+        }
         {this.props.jobObject && <CreateEvent job={this.props.jobObject} />}
       </React.Fragment>
     );
@@ -66,7 +70,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    jobObject: state.createJobState.jobObject
+    jobObject: state.createJobState.jobObject,
+    jobImage: state.createJobState.jobImage
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateJob)
