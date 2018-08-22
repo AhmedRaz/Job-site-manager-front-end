@@ -10,7 +10,8 @@ class LogInForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.loginUser(this.state.email_address, this.state.password)
+    this.props.loginUser(this.state.email_address, this.state.password);
+    this.resetForm();
   }
 
   handleChange = (e)=> {
@@ -21,8 +22,15 @@ class LogInForm extends React.Component {
       })
   }
 
+  resetForm = () =>{
+    this.setState({
+      email_address: "",
+      password: ""
+    })
+  }
+
   render(){
-    
+
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -31,7 +39,7 @@ class LogInForm extends React.Component {
               <p ><label>E-mail Address: </label>
               <input type="email" name="email_address" value={this.state.email_address} onChange={this.handleChange} /></p>
               <p><label>Password: </label>
-              <input type="password" name="password" onChange={this.handleChange} /></p>
+              <input type="password" name="password" value={this.state.password} onChange={this.handleChange} /></p>
               <p><input type="submit" value="Log In" /></p>
            </fieldset>
         </form>
