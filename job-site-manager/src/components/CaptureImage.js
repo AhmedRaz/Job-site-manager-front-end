@@ -89,7 +89,7 @@ class CaptureImage extends React.Component {
           width={350}
           videoConstraints={videoConstraints}
         />
-        <button onClick={this.capture}>Capture photo</button>
+        <div className="button-container"><button onClick={this.capture}>Capture photo</button></div>
         {this.state.imageData ?
           <div>
             <p><img src={this.state.imageData} alt=""/></p>

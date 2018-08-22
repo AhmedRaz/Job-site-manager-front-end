@@ -1,7 +1,8 @@
 .App {
+  text-decoration: none;
   text-align: center;
   display: grid;
-  grid-template-columns: 20vw 60vw 20vw;
+  grid-template-columns: 20vw 50vw 30vw;
   grid-template-areas: "l m r";
   padding-top: 15vh;
 }
@@ -12,14 +13,19 @@
 } */
 
 #nav-bar {
-  background-color: #00008B;
+  background-image: url('./teamIndustrialHeader.jpg');
+  list-style-type: none;
+  text-decoration: none;
+  background-color: #105759;
   display: flex;
-  justify-content: center;
+  justify-content:left;
   align-items: center;
   position: absolute;
   height: 15vh;
   width: 100vw;
   color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: bold;
 }
 
 .main-content {
@@ -46,15 +52,31 @@
   to { transform: rotate(360deg); }
 }
 
+.side-bar-div {
+  text-decoration: none;
+}
 
 #side-bar {
+  list-style-type: none;
+  text-decoration: none;
   grid-area: l;
   width: 20vw;
-  position: fixed;
-  margin-top: 15vh;
-  height: calc(100vh - 15vh);
+  position: sticky;
+  top: 0;
+  /* margin-top: 15vh; */
+  height: calc(100vh);
   overflow-y: scroll;
-  background-color: #778899;
+  background-color: #bf163b;
+  /* justify-content: center;
+  align-items: center; */
+  text-align: center;
+  /* align-content: center; */
+}
+.side-bar-div {
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 legend {
@@ -107,9 +129,19 @@ input:valid + span:after {
   text-align: left;
 }
 
+button {
+  margin: .1vmin;
+  color: grey
+}
+
+input {
+  margin: .25vw;
+}
+
 a:hover {
   cursor: pointer;
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  font-size: 18px;
 }
 
 .close-button {
@@ -118,13 +150,17 @@ top: auto ;
 outline:5px solid #fff
 }
 
-.create-job {
+/* .create-job {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
-}
+} */
 
-.create-job-item {
+/* .create-job-item {
   grid-column: 1/2;
   grid-row: 1/2;
+} */
+
+a:visited {
+    color: white;
 }

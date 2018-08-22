@@ -42,6 +42,14 @@ class JobDetail extends React.Component {
     })
   }
 
+  renderIfNoImage = () => {
+    if (this.props.jobImage){
+    return  <div className="image-tag"> <img src={this.props.jobImage.image_data} alt=""/> </div>
+    } else {
+      return null
+    }
+  }
+
   handleClick = (eventId) => {
     this.props.selectEvent(eventId)
   }
@@ -64,7 +72,7 @@ class JobDetail extends React.Component {
 
           </fieldset>
           <div className="images-container">
-            {this.props.job.images.length > 0 ? this.renderJobImages(): <div> <img src={this.props.jobImage.image_data} alt=""/> </div>}
+            {this.props.job.images.length > 0 ? this.renderJobImages(): this.renderIfNoImage() }
           </div>
           {this.props.selectedEvent ? <EventDetail event={this.props.selectedEvent} /> : <div></div>}
         </div>

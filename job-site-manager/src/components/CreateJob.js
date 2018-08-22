@@ -55,7 +55,7 @@ class CreateJob extends React.Component {
           </fieldset>
         </div>
         {(this.props.jobObject && this.props.jobImage === null) && <CaptureImage job={this.props.jobObject} /> }
-        { this.props.jobImage && <div> <img src={this.props.jobImage.image_data} alt=""/> </div>}
+        { this.props.jobImage && <div> <img className="image-tag" src={this.props.jobImage.image_data} alt=""/> </div>}
 
         {this.props.jobObject && <CreateEvent job={this.props.jobObject} />}
       </React.Fragment>

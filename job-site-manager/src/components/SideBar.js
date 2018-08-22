@@ -26,6 +26,7 @@ class SideBar extends React.Component {
   render() {
     return(
       <div id="side-bar">
+        <div>
         <div className="side-bar-div">
           <p>Hello, {`${this.props.user.first_name}`}</p>
         </div>
@@ -44,6 +45,7 @@ class SideBar extends React.Component {
         </div>
         <div className="side-bar-div" >
           <Link className="item" to="/main/create_job">Create New Job </Link>
+        </div>
         </div>
       </div>
     );

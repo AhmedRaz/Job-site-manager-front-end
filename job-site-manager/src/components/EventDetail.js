@@ -123,7 +123,7 @@ class EventDetail extends React.Component {
   render(){
     return(
       <div>
-        <fieldset>
+        <fieldset className="job-details">
           <legend>Event Details</legend>
           <p>Name: {`${this.props.event.event_name}`}</p>
           <p>Type: {`${this.props.event.event_type}`}</p>
