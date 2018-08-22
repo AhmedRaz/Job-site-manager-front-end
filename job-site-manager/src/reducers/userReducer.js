@@ -1,9 +1,9 @@
 const defaultState = {
-  user: {},
+  user: null,
   currentUserExists: false,
   authentication: false,
   error: "",
-  userEvents: []
+  userEvents: null
 }
 
 const userReducer = (state = defaultState, action) => {

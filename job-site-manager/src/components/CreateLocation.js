@@ -36,6 +36,7 @@ class CreateLocation extends React.Component {
 
 
   render(){
+    console.log("in create location", this.state, this.props);
     return(
       <div>
         <fieldset>

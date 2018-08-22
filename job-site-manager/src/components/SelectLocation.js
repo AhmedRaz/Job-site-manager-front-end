@@ -36,6 +36,7 @@ class SelectLocation extends React.Component {
   }
 
   render(){
+    console.log(this.props.company)
     return(
       <React.Fragment>
         <div>

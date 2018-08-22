@@ -7,14 +7,20 @@ class NavBar extends React.Component {
 
 
   render(){
+    
     return(
       <div id="nav-bar">
         <div className="item">
           <h1>Job Site Manager</h1>
         </div>
-      { this.props.currentUserExists && (<div className="item">
-        <h2>Welcome To { this.props.user.company.name }</h2>
-      </div>) }
+
+        { this.props.user ?
+          <div className="item">
+            <h2>Welcome To { this.props.user.company.name }</h2>
+          </div>
+          : null
+        }
+
         { this.props.currentUserExists ?
           <a href="" className= "item" onClick={this.props.logOut} >Log Out </a>
           :

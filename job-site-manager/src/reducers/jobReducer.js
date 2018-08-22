@@ -1,5 +1,5 @@
 const defaultState = {
-  job: {},
+  job: null,
   companyJobs: [],
   selectedEvent: null,
   jobEvents: []
@@ -24,7 +24,7 @@ const jobReducer = (state = defaultState, action) => {
 
     case 'CREATE_NEW_JOB':
       return {
-        ...state, companyJobs: [...state.companyJobs, action.payload]
+        ...state, companyJobs: [...state.companyJobs, action.payload], job: action.payload
       }
 
     case 'GET_JOB_EVENTS':
@@ -41,6 +41,7 @@ const jobReducer = (state = defaultState, action) => {
       return {
         ...state, job: {...state.job, ...action.payload}
       }
+
 
     default:
       return {...state};

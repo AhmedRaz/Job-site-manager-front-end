@@ -179,11 +179,13 @@ export const createEventObject = (route, event) => {
   }
 }
 
-export const setJob = (job) => {
-  return {
-      type: 'SET_JOB',
-      payload: job
-    }
+export const setJob = (job_id) => {
+  return dispatch => {
+    RestfulAdapter.showFetch("jobs", job_id)
+      .then(job => dispatch({type: 'SET_JOB',
+      payload: job})
+    )
+  }
 }
 
 export const getCompanyUsers = (route, company, company_id) => {
