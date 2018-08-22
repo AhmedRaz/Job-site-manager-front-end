@@ -8,6 +8,7 @@ import SideBar from './components/SideBar';
 import LogInForm from './components/LogInForm';
 import SignUpForm from './components/SignUpForm';
 import MainContainer from './components/MainContainer';
+import RightSideBar from './components/RightSideBar';
 
 class App extends Component {
 
@@ -34,6 +35,9 @@ class App extends Component {
         <NavBar />
         { this.propCheck() ?
           <SideBar /> : ""
+        }
+        { this.propCheck() ?
+          <RightSideBar /> : ""
         }
         <div className="main-content">
           <Switch>

@@ -124,7 +124,12 @@ class EventDetail extends React.Component {
     return(
       <div>
         <fieldset className="job-details">
-          <legend>Event Details</legend>
+          <legend><span>Event Details   </span>
+            <span><button className="close-button" onClick={() => this.props.closeEvent() } >
+              <img src="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/16/Close-2-icon.png" alt="Close"/>
+            </button></span>
+          </legend>
+
           <p>Name: {`${this.props.event.event_name}`}</p>
           <p>Type: {`${this.props.event.event_type}`}</p>
           <p>Structure: {`${this.props.event.event_struct}`}</p>
@@ -136,9 +141,9 @@ class EventDetail extends React.Component {
           <p><button onClick={this.showEditEventForm}>Edit Details</button></p>
           {this.state.showEditForm && this.editEventForm() }
           {this.props.event.user && <p><button onClick={this.handleResolveSubmit}>Resolve?</button></p>}
-          <button className="close-button" onClick={() => this.props.closeEvent() } >
+          {/* <button className="close-button" onClick={() => this.props.closeEvent() } >
             <img src="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/16/Close-2-icon.png" alt="Close"/>
-          </button>
+          </button> */}
         </fieldset>
         {this.props.event.image_source ? <div className="images-container">
           { this.renderEventImages() }
