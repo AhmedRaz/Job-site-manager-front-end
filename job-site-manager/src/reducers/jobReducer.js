@@ -2,7 +2,8 @@ const defaultState = {
   job: null,
   companyJobs: [],
   selectedEvent: null,
-  jobEvents: []
+  jobEvents: [],
+  jobImage: null
 }
 
 const jobReducer = (state = defaultState, action) => {
@@ -41,6 +42,11 @@ const jobReducer = (state = defaultState, action) => {
       return {
         ...state, job: {...state.job, ...action.payload}
       }
+
+      case 'SAVE_JOB_IMAGE':
+        return {
+          ...state, jobImage: {...action.payload}
+        }
 
 
     default:

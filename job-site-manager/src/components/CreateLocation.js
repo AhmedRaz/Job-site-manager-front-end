@@ -18,7 +18,7 @@ class CreateLocation extends React.Component {
     e.persist();
     this.setState({
       [e.target.name]: e.target.value
-    }, () => console.log(this.state))
+    })
   }
 
   handleSubmit = (e) => {

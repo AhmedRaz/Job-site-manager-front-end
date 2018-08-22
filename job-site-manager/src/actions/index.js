@@ -30,6 +30,7 @@ export const createUser = (route, body) => {
   return (dispatch) => {
     RestfulAdapter.createFetch(route, body)
     .then(data => {
+      localStorage.setItem('token', data.token)
       return RestfulAdapter.getCurrentUser(data.token)})
     .then(data => {
       dispatch({type: "LOGIN_USER", payload: data})

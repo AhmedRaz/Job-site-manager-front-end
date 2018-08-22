@@ -8,7 +8,7 @@ import CreateJob from './CreateJob';
 class CreateJobFormContainer extends React.Component {
 
   render(){
-    console.log(this.props);
+  
     return(
       <React.Fragment>
         { (this.props.geoLocation && !this.props.locationObject) && <SelectLocation geoLocation={this.props.geoLocation} company={this.props.company}/> }

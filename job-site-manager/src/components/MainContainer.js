@@ -52,12 +52,7 @@ componentDidMount() {
              })
              return <JobDetail job={job}  />
            }} />}
-           {/* <Route path="/main/jobs/:id" render={(routerProps) => {
-             const job = this.props.companyJobs.find((job) => {
-               return job.id === parseInt(routerProps.match.params.id, 10)
-             })
-             return <JobDetail job={job}  />
-           }} /> */}
+           
 
            <Route path="/main/create_job" component={ CreateJobFormContainer } />
         </Switch>

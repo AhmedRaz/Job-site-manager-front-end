@@ -57,10 +57,10 @@ class EventDetail extends React.Component {
 
   handleAssignSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.assignedUserId, this.props.user.id);
+
     this.props.assignUserToEvent("events", this.props.event.id, {user_id: this.state.assignedUserId})
-    if(this.state.assignedUserId == this.props.user.id){
-      console.log("this hit",this.state.assignedUserId, this.props.user.id)
+    if( parseInt(this.state.assignedUserId, 10) === this.props.user.id){
+
       this.props.updateUserEvents(this.props.event)
     }
     this.showUserAssignForm();

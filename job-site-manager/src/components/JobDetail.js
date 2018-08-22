@@ -64,7 +64,7 @@ class JobDetail extends React.Component {
 
           </fieldset>
           <div className="images-container">
-            {this.renderJobImages()}
+            {this.props.job.images.length > 0 ? this.renderJobImages(): <div> <img src={this.props.jobImage.image_data} alt=""/> </div>}
           </div>
           {this.props.selectedEvent ? <EventDetail event={this.props.selectedEvent} /> : <div></div>}
         </div>
@@ -83,7 +83,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     selectedEvent: state.jobState.selectedEvent,
-    jobEvents: state.jobState.jobEvents
+    jobEvents: state.jobState.jobEvents,
+    jobImage: state.jobState.jobImage
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(JobDetail)

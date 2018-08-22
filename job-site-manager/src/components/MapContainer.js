@@ -5,7 +5,7 @@ export class MapContainer extends Component {
 
 
   render() {
-    console.log("this is in MapContainer", this.props.geoLocation);
+    
     return (
       <React.Fragment>
          <Map id="map" style={ {width: '75%', height: '75%' } }
