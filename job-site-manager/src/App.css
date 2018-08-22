@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 20vw 50vw 30vw;
   grid-template-areas: "l m r";
-  padding-top: 15vh;
+  padding-top: 17vh;
 }
 
 /* .App-logo {
@@ -21,7 +21,7 @@
   justify-content:left;
   align-items: center;
   position: absolute;
-  height: 15vh;
+  height: 17vh;
   width: 100vw;
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -61,6 +61,22 @@
   text-decoration: none;
   grid-area: l;
   width: 20vw;
+  position: sticky;
+  top: 0;
+  /* margin-top: 15vh; */
+  height: calc(100vh);
+  overflow-y: scroll;
+  background-color: #bf163b;
+  /* justify-content: center;
+  align-items: center; */
+  text-align: center;
+  /* align-content: center; */
+}
+#right-side-bar {
+  list-style-type: none;
+  text-decoration: none;
+  grid-area: r;
+  width: 30vw;
   position: sticky;
   top: 0;
   /* margin-top: 15vh; */
@@ -130,8 +146,19 @@ input:valid + span:after {
 }
 
 button {
+  background-color: #5b5c5e;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
   margin: .1vmin;
-  color: grey
+  border-radius: 12px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: bold;
+  /* color: grey */
 }
 
 input {
