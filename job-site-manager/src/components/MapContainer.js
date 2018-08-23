@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import { connect } from 'react-redux';
 import Marker from './Marker';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+// const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class MapContainer extends Component {
   state = {
@@ -11,10 +11,10 @@ class MapContainer extends Component {
       lat: this.props.location.lat,
       lng: this.props.location.lng
     },
-    zoom: 18
+    zoom: 15
   };
 
-  renderMarkers(map, maps) {
+  showCurrentLocation(map, maps) {
     let marker = new maps.Marker({
       position: this.state.center,
       map,
@@ -22,13 +22,14 @@ class MapContainer extends Component {
     });
   }
 
-  listLocations = () => {
+  listLocations = (map,maps) => {
     return this.props.company.locations.map(location => {
-      return <AnyReactComponent
-        lat={location.latitude}
-        lng={location.longitude}
-        text={location.address}
-      />
+       let marker = new maps.Marker({
+        position: {lat: location.latitude, lng: location.longitude},
+        map,
+        title: `${location.address}`
+      })
+      return marker
     })
   }
 
@@ -40,15 +41,16 @@ class MapContainer extends Component {
           bootstrapURLKeys={{ key: "AIzaSyBx8rl3oOLydyLvRyf-X9LLdsPmIuLa9d4" }}
           defaultCenter={this.state.center}
           defaultZoom={this.state.zoom}
-          onGoogleApiLoaded={({map, maps}) => this.renderMarkers(map, maps)}
+          onGoogleApiLoaded={({map, maps}) => {this.showCurrentLocation(map, maps);this.listLocations(map, maps)}}
+          // onGoogleApiLoaded={({map, maps}) => this.listLocations(map, maps)}
           yesIWantToUseGoogleMapApiInternals={true}
         >
-          {/* <AnyReactComponent
+          <Marker
             lat={this.state.center.lat}
             lng={this.state.center.lng}
             text={'Current Location'}
-          /> */}
-          {this.listLocations()}
+          />
+
 
         </GoogleMapReact>
       </div>

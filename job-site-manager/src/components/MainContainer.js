@@ -4,6 +4,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { getCompanyJobs, getLocation} from '../actions';
 import JobDetail from './JobDetail';
 import CreateJobFormContainer from './CreateJobFormContainer';
+import MapContainer from './MapContainer';
 
 
 class MainContainer extends React.Component {
@@ -40,11 +41,12 @@ componentDidMount() {
 }
 
 
-  render(){
+  render() {
     return(
-      <div>
 
-        <img className="image-tag" src={`${this.props.company.logo_src}`} alt=""/>
+
+      <div>
+          <img className="image-tag" src={`${this.props.company.logo_src}`} alt=""/>
         <Switch>
            {this.props.companyJobs && <Route path="/main/jobs/:id" render={(routerProps) => {
              const job = this.props.companyJobs.find((job) => {
@@ -52,7 +54,6 @@ componentDidMount() {
              })
              return <JobDetail job={job}  />
            }} />}
-
 
            <Route path="/main/create_job" component={ CreateJobFormContainer } />
         </Switch>
