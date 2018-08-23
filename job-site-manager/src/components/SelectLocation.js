@@ -2,6 +2,7 @@ import React from 'react';
 import CreateLocation from './CreateLocation';
 import { selectLocation } from '../actions';
 import { connect } from 'react-redux';
+import MapContainer from './MapContainer'
 
 
 
@@ -39,6 +40,9 @@ class SelectLocation extends React.Component {
 
     return(
       <React.Fragment>
+        <div>
+          <MapContainer location={this.props.geoLocation} />
+        </div>
         <div>
           <form onSubmit={ this.handleSubmit } >
             <p><label>Select Location: </label>

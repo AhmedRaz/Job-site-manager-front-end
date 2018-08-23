@@ -28,6 +28,18 @@
   font-weight: bold;
 }
 
+.welcome-page {
+  position: relative;
+  background: url('./wallpapercolourful.jpg') no-repeat center;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+
+}
+
 .main-content {
   grid-area: m;
   /* padding-top: .25vh; */

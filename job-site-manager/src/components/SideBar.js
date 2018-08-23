@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUserEvents } from '../actions';
+import bussiness_cat from '../bussiness_cat.png'
 
 
 class SideBar extends React.Component {
@@ -28,7 +29,10 @@ class SideBar extends React.Component {
       <div id="side-bar">
         <div>
         <div className="side-bar-div">
-          <p>Hello, {`${this.props.user.first_name}`}</p>
+          <p><h2>Hello, {`${this.props.user.first_name}`}</h2></p>
+          {!this.props.user.profile_pic_src === "" ? <img className="image-tag" src={`${this.props.user.profile_pic_src}`} alt="profile"/> :
+            <img className="image-tag" src={bussiness_cat} alt=""/>
+          }
         </div>
         { this.props.userEvents && <div className="side-bar-div">
           <span>Your Events:</span>
