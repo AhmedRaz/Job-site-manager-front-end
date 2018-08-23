@@ -1,12 +1,13 @@
 import React from 'react' ;
 import { connect } from 'react-redux';
-import { selectEvent, getJobEvents, closeEvent} from '../actions';
+import { selectEvent, getJobEvents, closeEvent, setJob } from '../actions';
 import EventDetail from './EventDetail';
 
 
 class JobDetail extends React.Component {
 
   componentDidMount() {
+    this.props.setJob(this.props.job)
     this.updateJobEvents()
 
   }
@@ -16,6 +17,7 @@ class JobDetail extends React.Component {
     // updates the job events for THIS job
     this.props.getJobEvents("events", "job", this.props.job.id)
     this.props.closeEvent()
+    this.props.setJob(this.props.job)
     // make some fetch that updates State (redux)
 
   }
@@ -26,14 +28,12 @@ class JobDetail extends React.Component {
       this.updateJobEvents()
     }
     // otherwise do nothing
-
-
   }
-  renderJobImages = () => {
-    return this.props.job.images.map(image => {
-      return <img className="image-tag" src={image.image_data} alt={`${image.image_name}`} key={`image-${image.id}`}  />
-    })
-  }
+  // renderJobImages = () => {
+  //   return this.props.job.images.map(image => {
+  //     return <img className="image-tag" src={image.image_data} alt={`${image.image_name}`} key={`image-${image.id}`}  />
+  //   })
+  // }
 
   renderJobEvents = () => {
 
@@ -42,13 +42,13 @@ class JobDetail extends React.Component {
     })
   }
 
-  renderIfNoImage = () => {
-    if (this.props.jobImage){
-    return  <div className="image-tag"> <img src={this.props.jobImage.image_data} alt=""/> </div>
-    } else {
-      return null
-    }
-  }
+  // renderIfNoImage = () => {
+  //   if (this.props.jobImage){
+  //   return  <div className="image-tag"> <img src={this.props.jobImage.image_data} alt=""/> </div>
+  //   } else {
+  //     return null
+  //   }
+  // }
 
   handleClick = (eventId) => {
     this.props.selectEvent(eventId)
@@ -71,10 +71,10 @@ class JobDetail extends React.Component {
             </div>}
 
           </fieldset>
-          <div className="images-container">
+          {/* <div className="images-container">
             {this.props.job.images.length > 0 ? this.renderJobImages(): this.renderIfNoImage() }
-          </div>
-          {this.props.selectedEvent ? <EventDetail event={this.props.selectedEvent} /> : <div></div>}
+          </div> */}
+          {/* {this.props.selectedEvent ? <EventDetail event={this.props.selectedEvent} /> : <div></div>} */}
         </div>
     )
   }
@@ -84,7 +84,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     closeEvent: () => (dispatch(closeEvent())),
     selectEvent: (event) => dispatch(selectEvent(event)),
-    getJobEvents: (route, job, job_id) => dispatch(getJobEvents(route, job, job_id))
+    getJobEvents: (route, job, job_id) => dispatch(getJobEvents(route, job, job_id)),
+    setJob: (job) => dispatch(setJob(job))
   }
 }
 

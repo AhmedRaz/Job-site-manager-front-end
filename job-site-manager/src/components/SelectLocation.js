@@ -36,21 +36,22 @@ class SelectLocation extends React.Component {
   }
 
   render(){
-    
+
     return(
       <React.Fragment>
         <div>
           <form onSubmit={ this.handleSubmit } >
-            <p><label>Location: </label>
+            <p><label>Select Location: </label>
               <select required name="locationId"
                 onChange={this.handleChange }>
                 <option value="" disabled selected hidden>Select your option</option>
                 { this.listLocations() }
               </select>
               <input type="submit" value="Select Location" />
-              <span className="validity"></span>
+
             </p>
           </form>
+          <p>OR</p>
           <p><button onClick={ this.showCreateLocation }>"Create New Location"</button></p>
         </div>
         {this.state.createLocation && <CreateLocation geoLocation={this.props.geoLocation} company={this.props.company} />}
