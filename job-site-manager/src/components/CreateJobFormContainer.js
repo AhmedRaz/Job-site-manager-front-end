@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import MapContainer from './MapContainer';
 import SelectLocation from './SelectLocation';
 import CreateJob from './CreateJob';
 import { closeEvent, resetJob } from '../actions';

@@ -9,6 +9,7 @@ import LogInForm from './components/LogInForm';
 import SignUpForm from './components/SignUpForm';
 import MainContainer from './components/MainContainer';
 import RightSideBar from './components/RightSideBar';
+import WelcomePage from './components/WelcomePage';
 
 class App extends Component {
 
@@ -32,6 +33,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Switch>
+          <Route exact path="/" component={ WelcomePage } />
+          
+        </Switch>
         <NavBar />
         { this.propCheck() ?
           <SideBar /> : ""
@@ -41,10 +46,10 @@ class App extends Component {
         }
         <div className="main-content">
           <Switch>
-            <Route exact path="/" render={ () => {
+            {/* <Route exact path="/" render={ () => {
               return (!this.props.currentUserExists ? <Redirect to="/login" /> :
               <MainContainer />)
-              }} />
+              }} /> */}
 
             <Route path="/main" render={ () => {
               return (!this.props.currentUserExists ?  <Redirect to="/login" /> :
