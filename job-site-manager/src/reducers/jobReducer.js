@@ -43,10 +43,15 @@ const jobReducer = (state = defaultState, action) => {
         ...state, job: {...state.job, ...action.payload}
       }
 
-      case 'SAVE_JOB_IMAGE':
-        return {
-          ...state, jobImage: {...action.payload}
-        }
+    case 'SAVE_JOB_IMAGE':
+      return {
+        ...state, jobImage: {...action.payload}
+      }
+
+    case 'RESET_JOB':
+      return {
+        ...state, job: null
+      }
 
 
     default:

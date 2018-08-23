@@ -43,8 +43,8 @@
 
 .image-tag {
   margin: .5vw;
-  height: 33vh;
-  width: 33vw;
+
+  width: 96%;
 }
 
 @keyframes App-logo-spin {

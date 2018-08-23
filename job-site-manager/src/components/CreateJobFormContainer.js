@@ -3,12 +3,19 @@ import { connect } from 'react-redux';
 import MapContainer from './MapContainer';
 import SelectLocation from './SelectLocation';
 import CreateJob from './CreateJob';
+import { closeEvent, resetJob } from '../actions';
+
 
 
 class CreateJobFormContainer extends React.Component {
 
+  componentDidMount() {
+    this.props.closeEvent()
+    this.props.resetJob()
+  }
+
   render(){
-  
+
     return(
       <React.Fragment>
         { (this.props.geoLocation && !this.props.locationObject) && <SelectLocation geoLocation={this.props.geoLocation} company={this.props.company}/> }
@@ -26,4 +33,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(CreateJobFormContainer)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    closeEvent: () => (dispatch(closeEvent())),
+    resetJob : () => dispatch(resetJob())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateJobFormContainer)
