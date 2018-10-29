@@ -4,7 +4,7 @@ import companyReducer from './companyReducer';
 import jobReducer from './jobReducer';
 import createJobReducer from './createJobReducer';
 
-
+//Combine and utilize multiple states and reducers in store.
 const rootReducer = combineReducers(
   {
     userState: userReducer,
