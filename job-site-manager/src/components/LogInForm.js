@@ -10,6 +10,7 @@ class LogInForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    //sends a fetch request defined in actions
     this.props.loginUser(this.state.email_address, this.state.password);
     this.resetForm();
   }
