@@ -14,15 +14,18 @@ import WelcomePage from './components/WelcomePage';
 class App extends Component {
 
 
-
   componentDidMount() {
+    //retrieves any available companies
     this.props.getCompanies();
+    //checks to see if user is logged in via localStorage
     if (localStorage.getItem('token')) {
+      //if user token exists, retrieve user data, token is JWT encrypted
       this.props.getUser(localStorage.getItem('token'))
     }
 
   }
 
+  //conditional to test if user is logged in, and a valid company exists
   propCheck = () => {
     return this.props.currentUserExists && this.props.company
   }
@@ -35,7 +38,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={ WelcomePage } />
-          
+
         </Switch>
         <NavBar />
         { this.propCheck() ?
